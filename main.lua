@@ -26,15 +26,16 @@ function love.load()
     ['music'] = love.audio.newSource('sounds/music.wav', 'static'),
   }
   gSounds['music']:setLooping(true)
+  gSounds['music']:play()
 
   gTextures = {
     ['background'] = love.graphics.newImage('graphics/background.png')
   }
 
-  gStateMachine = {
+  gStateMachine = StateMachine {
     ['start'] = function() return StartState() end,
   }
-  -- gStateMachine:change('start')
+  gStateMachine:change('start')
 
   love.keyboard.keysPressed = {}
 end
@@ -52,7 +53,7 @@ function love.keyboard.wasPressed(key)
 end
 
 function love.update(dt)
-  -- gStateMachine:update(dt)
+  gStateMachine:update(dt)
 
   love.keyboard.keysPressed = {}
 end
@@ -68,6 +69,6 @@ function love.draw()
       0,
       VIRTUAL_WIDTH / (backgroundWidth - 1), VIRTUAL_HEIGHT / (backgroundHeight - 1))
 
-    -- gStateMachine:render()
+    gStateMachine:render()
   push:finish()
 end
