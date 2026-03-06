@@ -7,27 +7,31 @@ end
 function StartState:update(dt)
   if love.keyboard.wasPressed('up') or love.keyboard.wasPressed('down') then
     gSounds['paddle_hit']:play()
-    if self.option == 0 then
-      self.option = 1 
-    else
-      self.option = 0
-    end
+    self.option = self.option == 0 and 1 or 0
+  end
+
+  if love.keyboard.wasPressed('escape') then
+    love.event.quit()
   end
 end
 
 function StartState:render()
   love.graphics.setFont(gFonts['large'])
-  love.graphics.printf('Breakout', 0, 64, VIRTUAL_WIDTH, 'center')
+  love.graphics.printf('BREAKOUT', 0, VIRTUAL_HEIGHT / 3, VIRTUAL_WIDTH, 'center')
 
   love.graphics.setFont(gFonts['small'])
   if self.option == 0 then
-    love.graphics.setColor(0, 1, 0, 1)
+    -- highlight option
+    love.graphics.setColor(103/255, 1, 1, 1)
   end
-  love.graphics.printf('Start', 0, 185, VIRTUAL_WIDTH, 'center')
+  love.graphics.printf('START', 0, VIRTUAL_HEIGHT / 2 + 75, VIRTUAL_WIDTH, 'center')
+  -- reset color
   love.graphics.setColor(1, 1, 1, 1)
   if self.option == 1 then
-    love.graphics.setColor(0, 1, 0, 1)
+    -- highlight option
+    love.graphics.setColor(103/255, 1, 1, 1)
   end
-  love.graphics.printf('Highscore', 0, 200, VIRTUAL_WIDTH, 'center')
+  love.graphics.printf('HIGHSCORE', 0, VIRTUAL_HEIGHT / 2 + 85, VIRTUAL_WIDTH, 'center')
+  -- reset color
   love.graphics.setColor(1, 1, 1, 1)
 end
