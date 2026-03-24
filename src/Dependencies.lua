@@ -3,6 +3,7 @@ push = require 'lib/push'
 Class = require 'lib/class'
 
 require 'src/constants'
+require 'src/Util.lua'
 
 -- a basic StateMachine class which will allow us to transition to and from
 -- game states smoothly and avoid monolithic code in one file

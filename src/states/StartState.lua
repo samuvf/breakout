@@ -14,7 +14,7 @@ function StartState:update(dt)
     love.event.quit()
   end
 
-  if love.keyboard.wasPressed('enter') and self.option == 0 then
+  if love.keyboard.wasPressed('return') or love.keyboard.wasPressed('enter') and self.option == 0 then
     gStateMachine:change('play')
   end
 end
