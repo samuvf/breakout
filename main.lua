@@ -29,7 +29,12 @@ function love.load()
   gSounds['music']:play()
 
   gTextures = {
-    ['background'] = love.graphics.newImage('graphics/background.png')
+    ['background'] = love.graphics.newImage('graphics/background.png'),
+    ['main'] = love.graphics.newImage('graphics/blocks.png'),
+  }
+
+  gFrames = {
+    ['paddles'] = GeneratePaddles(gTextures['main'])
   }
 
   gStateMachine = StateMachine {

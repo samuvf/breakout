@@ -36,16 +36,16 @@ function GeneratePaddles(atlas)
 
   for i = 1, 4 do
     --smallest
-    paddle[paddleCount] = love.graphics.newQuad(x, y, 32, 16, atlas:getDimensions())
+    paddles[paddleCount] = love.graphics.newQuad(x, y, 32, 16, atlas:getDimensions())
     paddleCount = paddleCount + 1
     --medium
-    paddle[paddleCount] = love.graphics.newQuad(x + 32, y, 64, 16, atlas:getDimensions())
+    paddles[paddleCount] = love.graphics.newQuad(x + 32, y, 64, 16, atlas:getDimensions())
     paddleCount = paddleCount + 1
     --large
-    paddle[paddleCount] = love.graphics.newQuad(x + 96, y, 96, 16, atlas:getDimensions())
+    paddles[paddleCount] = love.graphics.newQuad(x + 96, y, 96, 16, atlas:getDimensions())
     paddleCount = paddleCount + 1
     --huge
-    paddle[paddleCount] = love.graphics.newQuad(x, y + 16, 128, 16, atlas:getDimensions())
+    paddles[paddleCount] = love.graphics.newQuad(x, y + 16, 128, 16, atlas:getDimensions())
     paddleCount = paddleCount + 1
 
     -- prepare y for the next set of paddles
