@@ -1,29 +1,29 @@
--- PlayState = Class{__includes = BaseState}
+PlayState = Class{__includes = BaseState}
 
--- function PlayState:init() 
---   self.paddles = GeneratePaddles(gTextures['blocks']) -- generates an table of 16 paddles
---   self.x = (VIRTUAL_WIDTH / 2) - 32
---   self.dx = 200
--- end
+function PlayState:init() 
+  self.paddles = Paddles()
+  self.paused = false
+end
 
--- function PlayState:update(dt) 
---   -- movement
---   if love.keyboard.isDown('left') then
---     self.x = self.x + -self.dx * dt
---   end
---   if love.keyboard.isDown('right') then
---     self.x = self.x + self.dx * dt
---   end
+function PlayState:update(dt) 
+  if love.keyboard.wasPressed('space') then
+    gSounds['pause']:play()
+    self.paused = not self.paused
+  end
 
---   -- side collisions
---   if self.x < 0 then
---     self.x = 0
---   end
---   if self.x + 64 > VIRTUAL_WIDTH then
---     self.x = VIRTUAL_WIDTH - 64
---   end
--- end
+  if not self.paused then
+    self.paddles:update(dt)
+  end
 
--- function PlayState:render() 
---   love.graphics.draw(gTextures['blocks'], self.paddles[2], self.x, VIRTUAL_HEIGHT - 50)
--- end
+  if love.keyboard.wasPressed('escape') then
+    love.event.quit()
+  end
+end
+
+function PlayState:render() 
+  self.paddles:render()
+  if self.paused then
+    love.graphics.setFont(gFonts['large'])
+    love.graphics.printf('PAUSED', 0, VIRTUAL_HEIGHT / 2 - 16, VIRTUAL_WIDTH, 'center')
+  end
+end

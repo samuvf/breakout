@@ -22,6 +22,7 @@ function love.load()
 
   gSounds = {
     ['paddle_hit'] = love.audio.newSource('sounds/paddle_hit.wav', 'static'),
+    ['pause'] = love.audio.newSource('sounds/pause.wav', 'static'),
 
     ['music'] = love.audio.newSource('sounds/music.wav', 'static'),
   }
